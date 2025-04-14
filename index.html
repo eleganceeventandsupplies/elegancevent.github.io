@@ -1152,7 +1152,7 @@
                             </div>
                             <div>
                                 <h4>Phone</h4>
-                                <a href="tel:+1747304-0474"><p>(747) 304-0474</p></a>
+                                <a href="tel:+17473040474"><p>(747) 304-0474</p></a>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1161,7 +1161,7 @@
                             </div>
                             <div>
                                 <h4>Email</h4>
-                                <a href="mailto:elegance.eventplaning@gmail.com"><p> elegance.eventplaning@gmail.com</p></a>
+                                <a href="mailto:elegance.eventplaning@gmail.com"><p>elegance.eventplaning@gmail.com</p></a>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1175,65 +1175,63 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form id="eventForm">
+                <div class="contact-form" >
+                    <form id="contact-form" id="eventForm">
                         <div class="form-group">
-                            <input id="name" type="text" class="form-control" placeholder="Your Name" required>
+                            <input name="name" type="text" class="form-control" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input  id="email" type="email" class="form-control" placeholder="Your Email" required>
+                            <input  name="email" type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                       
+                        <div class="form-group">
+                            <input name="tel" type="tel" class="form-control" placeholder="Your Phone">
                         </div>
                         <div class="form-group">
-                            <input  id="tel" type="tel" class="form-control" placeholder="Your Phone">
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" required>
-                                <option value="" disabled selected>Event Type</option>
-                                <option value="wedding">Wedding</option>
-                                <option value="corporate">Corporate Event</option>
-                                <option value="birthday">Birthday Party</option>
-                                <option value="other">Other Celebration</option>
+                            <select name="evt" class="form-control" required>
+                                <option  value="" disabled selected>Event Type</option>
+                                <option name="wedding" value="wedding">Wedding</option>
+                                <option name="corporate" value="corporate">Corporate Event</option>
+                                <option name="birthday" value="birthday">Birthday Party</option>
+                                <option name="other" value="other">Other Celebration</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
+                            <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <button type="submit" value="Send" class="btn">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
         
     </section>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
-        emailjs.init("service_xkioxhj"); // Use your EmailJS User ID
-
-        document.getElementById('eventForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var tel = document.getElementById('tel').value;
-            var message = document.getElementById('message').value;
-
-            var templateParams = {
-                from_name: name,
-                from_email: email,
-                message: message,
-                tel: tel
-            };
-
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-                .then(function(response) {
-                    alert("Email sent successfully!");
-                    console.log("Success", response);
-                }, function(error) {
-                    alert("Error sending email.");
-                    console.error("Error", error);
-                });
-        });
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "GLiynNmnRB3P_SkfY",
+            });
+        })();
     </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // these IDs from the previous steps
+                emailjs.sendForm('service_hzjd0gu', 'template_9x7ycim', this)
+                    .then(() => {
+                        alert('Thank you for your message! We will contact you soon.');
+                        document.getElementById('contact-form').reset();
+                    }, (error) => {
+                        alert('ERROR!');
+                    });
+            });
+        }
+    </script>
+
     <!-- Footer -->
     <footer>
         <div class="container">
