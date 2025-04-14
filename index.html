@@ -1176,7 +1176,7 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form action="mailto:elegance.eventplaning@gmail.com" method="post" enctype=”multipart/form-data id="eventForm">
+                    <form id="eventForm">
                         <div class="form-group">
                             <input id="name" type="text" class="form-control" placeholder="Your Name" required>
                         </div>
@@ -1184,7 +1184,7 @@
                             <input  id="email" type="email" class="form-control" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input  id="message" type="tel" class="form-control" placeholder="Your Phone">
+                            <input  id="tel" type="tel" class="form-control" placeholder="Your Phone">
                         </div>
                         <div class="form-group">
                             <select class="form-control" required>
@@ -1196,18 +1196,44 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                            <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
                         </div>
-                    
-                        <button type="button" onclick="sendEmail()" class="btn">Send Message</button>
-                     
+                        <button type="submit" class="btn">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
         
     </section>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+        emailjs.init("service_xkioxhj"); // Use your EmailJS User ID
 
+        document.getElementById('eventForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var tel = document.getElementById('tel').value;
+            var message = document.getElementById('message').value;
+
+            var templateParams = {
+                from_name: name,
+                from_email: email,
+                message: message,
+                tel: tel
+            };
+
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+                .then(function(response) {
+                    alert("Email sent successfully!");
+                    console.log("Success", response);
+                }, function(error) {
+                    alert("Error sending email.");
+                    console.error("Error", error);
+                });
+        });
+    </script>
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1238,22 +1264,7 @@
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <script type="text/javascript">
-        function sendEmail() {
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
 
-            var subject = encodeURIComponent("Message from: " + name);
-            var body = encodeURIComponent("Message: " + message + "\n\nFrom: " + name + "\nEmail: " + email);
-
-            // Mailto URL format
-            var mailto_link = 'mailto:elegance.eventplaning@gmail.com?subject=' + subject + '&body=' + body;
-
-            // Open the default email client with the pre-filled data
-            window.location.href = mailto_link;
-        }
-    </script>
     
     <!-- Main JS -->
     <script>
@@ -1342,15 +1353,15 @@
         });
         
         // Form submission
-        const form = document.getElementById('eventForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Here you would normally send the form data to a server
-                alert('Thank you for your message! We will contact you soon.');
-                form.reset();
-            });
-        }
+        // const form = document.getElementById('eventForm');
+        // if (form) {
+        //     form.addEventListener('submit', function(e) {
+        //         e.preventDefault();
+        //         // Here you would normally send the form data to a server
+        //         alert('Thank you for your message! We will contact you soon.');
+        //         form.reset();
+        //     });
+        // }
         
         // Lazy loading images
         document.addEventListener('DOMContentLoaded', function() {
