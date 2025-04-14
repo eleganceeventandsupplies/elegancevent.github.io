@@ -1176,15 +1176,15 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="eventForm">
+                    <form action="mailto:elegance.eventplaning@gmail.com" method="post" enctype=”multipart/form-data id="eventForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
+                            <input id="name" type="text" class="form-control" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <input  id="email" type="email" class="form-control" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Your Phone">
+                            <input  id="message" type="tel" class="form-control" placeholder="Your Phone">
                         </div>
                         <div class="form-group">
                             <select class="form-control" required>
@@ -1198,11 +1198,14 @@
                         <div class="form-group">
                             <textarea class="form-control" placeholder="Your Message" required></textarea>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                    
+                        <button type="button" onclick="sendEmail()" class="btn">Send Message</button>
+                     
                     </form>
                 </div>
             </div>
         </div>
+        
     </section>
 
     <!-- Footer -->
@@ -1234,6 +1237,23 @@
 
     <!-- Swiper JS -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script type="text/javascript">
+        function sendEmail() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var message = document.getElementById('message').value;
+
+            var subject = encodeURIComponent("Message from: " + name);
+            var body = encodeURIComponent("Message: " + message + "\n\nFrom: " + name + "\nEmail: " + email);
+
+            // Mailto URL format
+            var mailto_link = 'mailto:elegance.eventplaning@gmail.com?subject=' + subject + '&body=' + body;
+
+            // Open the default email client with the pre-filled data
+            window.location.href = mailto_link;
+        }
+    </script>
     
     <!-- Main JS -->
     <script>
