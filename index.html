@@ -110,6 +110,184 @@
         .btn-accent {
             background-color: var(--accent);
         }
+
+        .base-template__wrapper {
+	max-width: 1390px;
+}
+
+/**
+ * Slider Instance
+ */
+
+.gallery-slider__slider {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.gallery-slider__wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 1390px;
+	gap: 40px;
+	overflow: hidden;
+}
+
+/**
+ * Slider Item
+ */
+
+.gallery-slider__slide {
+	position: relative;
+	overflow: hidden;
+	width: 183px;
+	height: 564px;
+	max-width: 498px;
+	filter: grayscale(100%);
+	transition: width 1.2s cubic-bezier(1, 0.3, 0.5, 1), filter 0.8s ease-in-out;
+	cursor: pointer;
+}
+
+.gallery-slider__image {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	transform: translateX(-50%);
+	object-fit: cover;
+}
+
+.gallery-slider__slide.active {
+	width: 498px;
+	filter: none;
+}
+
+.gallery-slider__img-prev,
+.gallery-slider__img-next {
+	position: absolute;
+	top: 0;
+	object-fit: cover;
+}
+
+.gallery-slider__img-prev,
+.gallery-slider__img-next {
+	width: 183px;
+	height: 564px;
+	opacity: 1;
+	visibility: visible;
+	transition: width 1.2s cubic-bezier(1, 0.3, 0.5, 1), opacity 1.2s ease-in-out,
+		visibility 1.2s ease-in-out;
+}
+
+.gallery-slider__img-next {
+	width: 183px;
+	height: 564px;
+	opacity: 0;
+	visibility: hidden;
+	transition: width 1.2s cubic-bezier(1, 0.3, 0.5, 1), opacity 1.2s ease-in-out,
+		visibility 1.2s ease-in-out;
+}
+
+@keyframes zoom-img {
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	50% {
+		transform: scale(1.3);
+	}
+
+	100% {
+		transform: scale(1.4);
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.gallery-slider__slide.active .gallery-slider__img-prev {
+	width: 498px;
+	z-index: 1;
+	animation: zoom-img 1.2s ease-in-out 0.5s 1 forwards;
+}
+
+.gallery-slider__slide.active .gallery-slider__img-next {
+	width: 498px;
+	opacity: 1;
+	visibility: visible;
+}
+
+.gallery-slider__slide:hover {
+	filter: none;
+}
+
+@media (max-width: 1400px) {
+	.gallery-slider__wrapper {
+		gap: 20px;
+		padding: 0 20px;
+	}
+
+	.gallery-slider__slide {
+		width: 140px;
+	}
+
+	.gallery-slider__img-prev,
+	.gallery-slider__img-next {
+		width: 100%;
+		height: 100%;
+	}
+}
+
+@media (max-width: 1024px) {
+	.gallery-slider__wrapper {
+		gap: 10px;
+	}
+
+	.gallery-slider__slide.active,
+	.gallery-slider__slide.active .gallery-slider__img-prev,
+	.gallery-slider__slide.active .gallery-slider__img-next {
+		width: 300px;
+	}
+}
+
+@media (max-width: 768px) {
+	.gallery-slider__slide {
+		width: 180px;
+		height: 300px;
+	}
+
+	.gallery-slider__slide.active,
+	.gallery-slider__img-prev,
+	.gallery-slider__img-next,
+	.gallery-slider__slide.active .gallery-slider__img-prev,
+	.gallery-slider__slide.active .gallery-slider__img-next {
+		width: 100%;
+		height: 300px;
+	}
+}
+
+@media (max-width: 575px) {
+	.gallery-slider__slide {
+		width: 70px;
+		height: 200px;
+	}
+
+	.gallery-slider__slide.active {
+		width: 180px;
+		height: 200px;
+	}
+
+	.gallery-slider__img-prev,
+	.gallery-slider__img-next,
+	.gallery-slider__slide.active .gallery-slider__img-prev,
+	.gallery-slider__slide.active .gallery-slider__img-next {
+		width: 100%;
+		height: 200px;
+	}
+}
+
         
         .btn-outline {
             background-color: transparent;
@@ -846,6 +1024,85 @@
             width: 100% !important;
             padding: 0 !important;
         }
+        body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  width: 100%;
+  height: 55rem;
+  grid-gap: 10px;
+}
+
+.grid-item1 {
+  background-image: url("21.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 1/4;
+  grid-row: 1/2;
+}
+
+.grid-item2 {
+  background-image: url("22.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 1/2;
+  grid-row: 2/5;
+}
+
+.grid-item3 {
+  background-image: url("23.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 1/5;
+  grid-row: 5/5;
+}
+
+.grid-item4 {
+  background-image: url("24.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 2/4;
+  grid-row: 2/5;
+}
+
+.grid-item5 {
+  background-image: url("25.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 4/6;
+  grid-row: 1/3;
+}
+
+.grid-item6 {
+  background-image: url("26.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 4/5;
+  grid-row: 3/5;
+}
+
+.grid-item7 {
+  background-image: url("27.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 5/6;
+  grid-row: 3/6;
+}
+
+.grid-item8 {
+  background-image: url("28.jpg");
+  background-size: cover;
+  background-position: center;
+  grid-column: 6/8;
+  grid-row: 1/6;
+}
+
+
     </style>
 </head>
 <body>
@@ -1043,6 +1300,82 @@
         </script>
     </section>
 
+    <section class="base-template">
+        <div class="container" class="wrapper base-template__wrapper">
+            <h1 style="text-align: center; margin: 1rem;" class="base-template__title">
+                Home Party and  Children's Birthday
+    
+            </h1>
+            <div style="text-align: center; margin: 1.5rem;"  class="base-template__text">
+                Celebrate in style with a cozy and fun home party! Whether it's a casual get-together or a special event, create lasting memories with friends and family in the comfort of your own space.
+                Make your child's birthday extra special with a fun-filled celebration! From themed decorations to exciting activities, it's the perfect way to create magical memories for your little one.
+            </div>
+    
+            <div class="base-template__content">
+                <div class="gallery-slider">
+    
+                    <!-- Slider Content -->
+    
+                    <div class="gallery-slider__slider">
+                        <div class="gallery-slider__wrapper">
+    
+                            <!-- Slide 1 -->
+    
+                            <div class="gallery-slider__slide active">
+                                <div class="gallery-slider__image">
+                                    <div class="gallery-slider__image">
+                                        <img class="gallery-slider__img-prev" src="31.jpg" alt="Gallery Slide - 1">
+                                        <img class="gallery-slider__img-next" src="31.jpg" alt="Gallery Slide - 1 Active">
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- Slide 2 -->
+    
+                            <div class="gallery-slider__slide">
+                                <div class="gallery-slider__image">
+                                    <div class="gallery-slider__image">
+                                        <img class="gallery-slider__img-prev" src="22.jpg" alt="Gallery Slide - 2">
+                                        <img class="gallery-slider__img-next" src="22.jpg" alt="Gallery Slide - 2 Active">
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <!-- Slide 3 -->
+    
+                            <div class="gallery-slider__slide">
+                                <div class="gallery-slider__image">
+                                    <img class="gallery-slider__img-prev" src="23.jpg" alt="Gallery Slide - 3">
+                                    <img class="gallery-slider__img-next" src="23.jpg" alt="Gallery Slide - 3 Active">
+                                </div>
+                            </div>
+    
+                            <!-- Slide 4 -->
+    
+                            <div class="gallery-slider__slide">
+                                <div class="gallery-slider__image">
+                                    <img class="gallery-slider__img-prev" src="pexels-maumascaro-1154189.jpg" alt="Gallery Slide - 4">
+                                    <img class="gallery-slider__img-next" src="pexels-maumascaro-1154189.jpg" alt="Gallery Slide - 4 Active">
+                                </div>
+                            </div>
+    
+                            <!-- Slide 5 -->
+    
+                            <div class="gallery-slider__slide">
+                                <div class="gallery-slider__image">
+                                    <img class="gallery-slider__img-prev" src="kids-7853414_1920.jpg" alt="Gallery Slide - 5">
+                                    <img class="gallery-slider__img-next" src="kids-7853414_1920.jpg" alt="Gallery Slide - 5 Active">
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Testimonials Section -->
     <section class="section testimonials" id="testimonials">
         <div class="container">
@@ -1085,6 +1418,21 @@
             </div>
         </div>
     </section>
+    
+    <section>
+        <div class="grid container">
+            <div class="grid-item1"></div>
+            <div class="grid-item2"></div>
+            <div class="grid-item3"></div>
+            <div class="grid-item4"></div>
+            <div class="grid-item5"></div>
+            <div class="grid-item6"></div>
+            <div class="grid-item7"></div>
+            <div class="grid-item8"></div>
+          </div>
+    </section>
+    
+
 
     <!-- Team Section -->
     <section class="section team" id="team">
@@ -1207,6 +1555,22 @@
         
     </section>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+	const slides = document.querySelectorAll(".gallery-slider__slide");
+
+	if (!slides.length) return;
+
+	[...slides].forEach((slide) => {
+		slide.addEventListener("click", () => {
+			slides.forEach((slide) => slide.classList.remove("active"));
+
+			slide.classList.add("active");
+		});
+	});
+});
+    </script>  
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
@@ -1249,7 +1613,7 @@
                 <div class="footer-social">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/elegance.eventplaning/"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-pinterest-p"></i></a>
                 </div>
                 <div class="copyright">
